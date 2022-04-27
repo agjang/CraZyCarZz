@@ -1,4 +1,3 @@
-
 public class Car {
 	private int Car_ID;
 	private String model;
@@ -13,4 +12,19 @@ public class Car {
 		this.Location = Location;
 		this.status = CarStatus.NOT_UNDER_HIRE;
 	}
+	
+	public void Hire() {
+		this.status = CarStatus.UNDER_HIRE;
+		System.out.println("Car " + Car_ID + ": Hired");
+	}
+	
+	public void Change_Location(Car_Park parkToMove) {
+		if(status == CarStatus.NOT_UNDER_HIRE) {
+			this.Location = parkToMove;
+			Location.Capacity -= 1;
+		}
+	}
+	
+	
+	
 }
