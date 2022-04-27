@@ -1,12 +1,12 @@
 
 public class Customer {
-	public int license_ID;
+	public String license_ID;
 	public String name;
 	public String phone;
 	public String address;
 	public int[] birthday = {0, 0, 0};
 	public boolean isNew = false;
-	public Customer(int license, String name, String phone, String address, int birthmonth, int birth_day, int birthyear) {
+	public Customer(String license, String name, String phone, String address, int birthmonth, int birth_day, int birthyear) {
 		this.license_ID = license;
 		this.name = name;
 		this.phone = phone;
