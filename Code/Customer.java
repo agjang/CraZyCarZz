@@ -101,7 +101,7 @@ public class Customer {
 			}
 			this.phone = input;
 			System.out.println();
-			System.out.println("Enter your address: ");
+			System.out.println("Enter your email address: ");
 			input = keyboard.nextLine();
 			this.address = input;
 			return;
