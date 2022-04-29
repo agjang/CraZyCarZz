@@ -8,6 +8,8 @@ public class Car_Park {
 	public ArrayList<Car> NotHiredCars = new ArrayList<Car>();
 	public ArrayList<Car> HiredCars = new ArrayList<Car>();
 	
+	
+	/* the functionality for a park of cars, i.e. where the cars are stored prior to being rented. */
 	public Car_Park(int ID, String address, String phone_number, int bottleneck) {
 		this.ID = ID;
 		this.address = address;
