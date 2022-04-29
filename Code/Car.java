@@ -13,11 +13,7 @@ public class Car {
 		this.status = CarStatus.NOT_UNDER_HIRE;
 	}
 	
-	public void Hire() {
-		this.status = CarStatus.UNDER_HIRE;
-		System.out.println("Car " + Car_ID + ": Hired");
-	}
-	
+	/* changing the location that the car is in */
 	public void Change_Location(Car_Park parkToMove) {
 		if(status == CarStatus.NOT_UNDER_HIRE) {
 			this.Location = parkToMove;
