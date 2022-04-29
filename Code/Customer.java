@@ -21,16 +21,19 @@ public class Customer {
 		this.birthday = birthday;
 	}
 	
-	public Customer(String address, LocalDate birthday) {
-		this.address = address;
+	
+	/* initializing the birthday of a customer that has just registered*/
+	public Customer(LocalDate birthday) {
 		this.isNew = true;
 		this.birthday = birthday;
 	}
 	
-	public void Hire_Car(Car_Park city, int duration) {
+	/* the framework for renting a car after a customer has successfully logged in*/
+	public void Hire_Car(Car_Park city) {
 		while(true) {
 			Scanner keyboard = new Scanner(System.in);
-			System.out.println("Hello " + name + "! Choose your car");
+			System.out.println();
+			System.out.println("Choose your car: ");
 			int input = keyboard.nextInt();
 			for(int i = 0; i < city.NotHiredCars.size(); i++) {
 				if(city.NotHiredCars.get(i).Car_ID == input) {
@@ -38,12 +41,17 @@ public class Customer {
 					if(isNew) {
 						isNew = false;
 					}
-					System.out.println(city.NotHiredCars.get(i).model + ": Hired for " + duration + " days");
+					System.out.println();
+					System.out.println("For how many days would you like to rent?");
+					input = keyboard.nextInt();
+					System.out.println();
+					
+					System.out.println(city.NotHiredCars.get(i).model + ": Hired for " + input + " days");
 					this.carInUse = city.NotHiredCars.get(i);
 					city.NotHiredCars.remove(i);
 					city.HiredCars.add(carInUse);
-					Payment due = new Payment(duration * 100);
-					this.money_due += (duration * 100);
+					Payment due = new Payment(input * 100);
+					this.money_due += (input * 100);
 					due.display_payment_information();
 					return;
 				}
@@ -53,6 +61,7 @@ public class Customer {
 		
 	}
 	
+	/* paying for the car that you've just rented*/
 	public void pay() {
 		while(true) {
 			Scanner keyboard = new Scanner(System.in);
@@ -68,7 +77,8 @@ public class Customer {
 		}
 	}
 	
-	public void login() {
+	/* registering your login information the first time you enter the system*/
+	public void register() {
 		while(true) {
 			Scanner keyboard = new Scanner(System.in);
 			System.out.println("Enter your drivers license: ");
@@ -93,9 +103,9 @@ public class Customer {
 			System.out.println();
 			System.out.println("Enter your address: ");
 			input = keyboard.nextLine();
-			this.address = input;		
+			this.address = input;
+			return;
 		}
 	}
-	
 	
 }
