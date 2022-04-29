@@ -1,11 +1,27 @@
 import java.time.Month;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Scanner;
 import java.util.*;
 
 
 public class Simulator {
-	public static LocalDate current_time = LocalDate.of(2022, Month.APRIL, 27);
+	public static Customer login(ArrayList<Customer> peoplerenting) {
+		Customer customerToReturn = null;
+		System.out.println("Enter your email: ");
+		Scanner keyboard = new Scanner(System.in);
+		String input = keyboard.nextLine();
+		for(int i = 0; i < peoplerenting.size(); i++) {
+			if(peoplerenting.get(i).address.equals(input)) {
+				System.out.println("Login successful! Hello, " + peoplerenting.get(i).name);
+				System.out.println();
+				customerToReturn = peoplerenting.get(i);
+			}
+		}
+		return customerToReturn;
+	}
+	
+	
 	public static void main(String[] args) {
 		ArrayList<Customer> peoplerenting = new ArrayList<Customer>();
 		String BusinessInquiriesPhone = "1-800-434-9017";
@@ -19,29 +35,62 @@ public class Simulator {
 		city.NotHiredCars.add(car_3);
 		city.NotHiredCars.add(car_4);
 		
-		Customer customer_1 = new Customer("S954004776", "John Bestavros", "867-241-5862", "46 Walden Lane", LocalDate.of(2001, Month.APRIL, 13));
-		Customer customer_2 = new Customer("S644117965", "Allen Jang", "827-686-7407 ", "18 Maiden Road", LocalDate.of(2000, Month.FEBRUARY, 2));
-		Customer customer_3 = new Customer("S154229971", "Vincent Nguyen", "271-228-9282", "69 Nice Street", LocalDate.of(2000, Month.JANUARY, 13));
-		Customer customer_4 = new Customer("S177628152", "Alex Sashusik", "419-810-0098", "201 Wood Lane", LocalDate.of(2001, Month.MAY, 31));
+		Customer customer_1 = new Customer("S954004776", "John Bestavros", "867-241-5862", "johnbest@bu.edu", LocalDate.of(2001, Month.APRIL, 13));
+		Customer customer_2 = new Customer("S644117965", "Allen Jang", "827-686-7407 ", "agjang@bu.edu", LocalDate.of(2000, Month.FEBRUARY, 2));
+		Customer customer_3 = new Customer("S154229971", "Vincent Nguyen", "271-228-9282", "vnguyen4@bu.edu", LocalDate.of(2000, Month.JANUARY, 13));
+		Customer customer_4 = new Customer("S177628152", "Alex Epifantsev", "419-810-0098", "epifant@bu.edu", LocalDate.of(2001, Month.MAY, 31));
 		peoplerenting.add(customer_1);
 		peoplerenting.add(customer_2);
 		peoplerenting.add(customer_3);
 		peoplerenting.add(customer_4);
-		
-		System.out.println("Available cars: ");
+		while(true) {
+			
 		System.out.println();
-		for(int i = 0; i < city.NotHiredCars.size(); i++) {
-			System.out.println(city.NotHiredCars.get(i).model);
+		System.out.println("Welcome to CraZyCarZz! \n1: Login \n2: Register");
+		Customer in_system = null;
+		Scanner keyboard = new Scanner(System.in);
+		String input = keyboard.nextLine();
+		if(input.equals("Login")) {
+			System.out.println();
+			in_system = login(peoplerenting);
+			System.out.println("Available cars: ");
+			System.out.println();
+			for(int i = 0; i < city.NotHiredCars.size(); i++) {
+				System.out.println(city.NotHiredCars.get(i).Car_ID + " " + city.NotHiredCars.get(i).model);
+			}
+			System.out.println();
+			System.out.println("Rental fare is $100 / day");
+			System.out.println();
+			in_system.Hire_Car(city);
+			in_system.pay();
+			System.out.println();
+			System.out.println("Available cars [updated]: ");
+			System.out.println();
+			for(int i = 0; i < city.NotHiredCars.size(); i++) {
+				System.out.println(city.NotHiredCars.get(i).model);
+			}
+			System.out.println("Enter 9 to logout");
+			int input2 = keyboard.nextInt();
+			if(input2 == 9) {
+				continue;
+			}
+		}else if(input.equals("Register")) {
+			Customer customer_5 = new Customer(LocalDate.of(1968, Month.APRIL, 4));
+			customer_5.register();
+			peoplerenting.add(customer_5);
+			System.out.println();
+			System.out.println("Welcome, " + customer_5.name + "!");
+			System.out.println();
+			System.out.println("Available cars: ");
+			System.out.println();
+			for(int i = 0; i < city.NotHiredCars.size(); i++) {
+				System.out.println(city.NotHiredCars.get(i).Car_ID + " " + city.NotHiredCars.get(i).model);
+			}
 		}
-		System.out.println();
-		customer_1.Hire_Car(city, 2);
-		customer_1.pay();
-		System.out.println();
-		System.out.println("Available cars [updated]: ");
-		System.out.println();
-		for(int i = 0; i < city.NotHiredCars.size(); i++) {
-			System.out.println(city.NotHiredCars.get(i).model);
+		
 		}
 		
 	}
 }
+
+
