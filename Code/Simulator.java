@@ -69,9 +69,9 @@ public class Simulator {
 			for(int i = 0; i < city.NotHiredCars.size(); i++) {
 				System.out.println(city.NotHiredCars.get(i).model);
 			}
-			System.out.println("Enter 9 to logout");
-			int input2 = keyboard.nextInt();
-			if(input2 == 9) {
+			System.out.println("Enter exit to logout");
+			String input2 = keyboard.nextLine();
+			if(input2.equals("exit")) {
 				continue;
 			}
 		}else if(input.equals("Register")) {
@@ -86,6 +86,10 @@ public class Simulator {
 			for(int i = 0; i < city.NotHiredCars.size(); i++) {
 				System.out.println(city.NotHiredCars.get(i).Car_ID + " " + city.NotHiredCars.get(i).model);
 			}
+			System.out.println();
+			System.out.println("Rental fare is $100 / day");
+			System.out.println();
+			break;
 		}
 		
 		}
