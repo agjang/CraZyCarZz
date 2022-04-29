@@ -2,6 +2,7 @@
 public class Payment {
 	public int payment_amount;
 	
+	/* very simple object that details an instance of needing to pay for something */
 	public Payment(int payment) {
 		this.payment_amount = payment;
 	}
